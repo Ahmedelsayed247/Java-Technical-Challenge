@@ -17,14 +17,13 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
 
-
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
 
     public Optional<User> findByUsername(String username) {
-        return Optional.ofNullable(userRepository.findByUsername(username));
+        return userRepository.findByUsername(username);
     }
 
     public boolean existsByUsername(String username) {

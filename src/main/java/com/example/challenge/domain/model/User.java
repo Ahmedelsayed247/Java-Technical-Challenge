@@ -1,5 +1,6 @@
 package com.example.challenge.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,7 +20,9 @@ public class User {
     private String username;
     private String password;
 
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Set<Contact> contacts;
 
     public User(Long userId, String username, String password) {
