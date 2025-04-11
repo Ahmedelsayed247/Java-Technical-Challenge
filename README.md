@@ -105,14 +105,14 @@ The /api/contacts GET endpoint supports pagination and sorting using a structure
   "sortBy": ["firstName"],
   "sortDir": "asc"
 }
+
 - page: (integer) Page number (starting from 0).
 
 - size: (integer) Number of items per page.
 
 - sortBy: (list) One or more fields to sort by (e.g., "firstName", "lastName").
 
-- sortDir: (string) Direction of sorting: "asc" or "desc".
-```
+- sortDir: (string) Direction of sorting: "asc" or "desc".```
 
 ## Example Requests
 ## Register User:
