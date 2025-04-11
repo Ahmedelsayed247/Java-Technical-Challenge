@@ -4,7 +4,8 @@ This repository contains a Java-based technical challenge implementation. The ap
 
 ## 📄 Project Overview
 
-The goal of this application is to provide a simple backend API for user registration and contact management. The system allows users to register, authenticate via JWT, and manage multiple contacts. The application follows best practices such as clean architecture, validation annotations, and custom exception handling.
+The goal of this application is to provide a simple backend API for user registration and contact management. The system allows users to register, authenticate via JWT, and manage multiple contacts. The application follows best practices such as clean architecture, validation annotations, custom exception handling, and supports pagination for contact listing.
+
 
 ## 🏗️ Project Structure
 The project follows a clean architecture, separating concerns into layers to ensure maintainability and scalability. Below is an overview of the directory structure:
@@ -28,6 +29,10 @@ com.example.challenge/
 ├── ChallengeApplication.java  # Main class entry point
 
 ```
+## 📽️ Demo Video
+Watch a short demo of the project here:  
+👉 [Watch Video](https://drive.google.com/file/d/1l6LL7_1s3xlN8UxyQtMj4mwjbVxefAEV/view?usp=sharing)
+
 ## 📄 Prerequisites
 - Java 11 or higher: Required to run the Spring Boot application.
 - MySQL: The database used for storing user and contact data.
@@ -76,7 +81,7 @@ The following endpoints are available for interacting with the application:
 
 - POST /api/auth/login: Login and obtain a JWT token.
 
-- GET /api/contacts: Get a list of contacts for the authenticated user.
+- GET /api/contacts: Get a list of contacts for the authenticated user (with pagination support).
 
 - POST /api/contacts: Create a new contact.
 
@@ -90,6 +95,25 @@ The following endpoints are available for interacting with the application:
 - User Login: Once registered, login through the /api/auth/login endpoint to get a JWT token.
 - Managing Contacts: After login, use the /api/contacts endpoints to manage your contacts (CRUD operations).
 
+⚙️ Pagination Support
+The /api/contacts GET endpoint supports pagination and sorting using a structured request body via the ContactListRequest DTO. This allows clients to define the page number, size, sorting fields, and direction.
+## ContactListRequest Structure:
+```json
+{
+  "page": 0,
+  "size": 10,
+  "sortBy": ["firstName"],
+  "sortDir": "asc"
+}
+- page: (integer) Page number (starting from 0).
+
+- size: (integer) Number of items per page.
+
+- sortBy: (list) One or more fields to sort by (e.g., "firstName", "lastName").
+
+- sortDir: (string) Direction of sorting: "asc" or "desc".
+```
+
 ## Example Requests
 ## Register User:
 ``` bash 
@@ -101,7 +125,6 @@ POST /api/auth/register
 }
 ```
 ## Login User:
-
 ``` bash 
 POST /api/auth/login
 {
@@ -109,12 +132,31 @@ POST /api/auth/login
   "password": "ahmed123456"
 }
 ```
+
 ## Create Contact (requires JWT token in the Authorization header):
 ``` bash 
 POST /api/contacts
+Authorization: Bearer <JWT_TOKEN>
+   {
+        "firstName": "ahmed",
+        "lastName": "el sayed",
+        "phoneNumber": "01030228260",
+        "emailAddress": "ahmedelsayedabdelaty4@gmail.com",
+        "birthdate": "2001-07-24"
+  }
+```
+## list of contacts for the authenticated user with pagination. 
+``` bash 
+GEt /api/contacts
+Authorization: Bearer <JWT_TOKEN>
 {
-  "name": "Jane Doe",
-  "phone": "123-456-7890",
-  "email": "jane.doe@example.com"
+  "page": 1,
+  "size": 5,
+  "sortBy": ["birthdate"],
+  "sortDir": "desc"
 }
 ```
+
+
+
+

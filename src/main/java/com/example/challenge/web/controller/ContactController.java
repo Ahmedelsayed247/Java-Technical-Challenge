@@ -31,7 +31,7 @@ public class ContactController {
         // Return success response
         return ResponseEntity.ok(Collections.singleton("Contact added successfully!"));
     }
-    @PostMapping("/list")
+    @GetMapping
     public ResponseEntity<List<Contact>> listContacts(
             Authentication authentication,
             @RequestBody ContactListRequest request) {
