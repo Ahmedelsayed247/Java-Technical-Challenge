@@ -47,14 +47,17 @@ CREATE DATABASE addressbook_db;
 
 ## Configure Application Properties
 ```propeties
-spring.datasource.url=jdbc:mysql://localhost:3306/user_management
+spring.datasource.url=jdbc:mysql://localhost:3306/addressbook_db?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
 spring.datasource.username=your_mysql_username
 spring.datasource.password=your_mysql_password
-spring.jpa.hibernate.ddl-auto=update
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+# Hibernate Configuration
 spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.hibernate.ddl-auto=update
+# JWT Configuration
+jwt.secret=thisIsMysecregtfrdesww233eggtffeeddgkjjhhtdhttebd54ndhdhfhhhshs8877465sbbdd
+jwt.expiration=3600000 
+
 ```
 ## Build the Project
 ```bash
