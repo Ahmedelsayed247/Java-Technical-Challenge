@@ -1,6 +1,5 @@
-package com.example.challenge.domain.service;
-
-import com.example.challenge.application.dto.ContactDTO;
+package com.example.challenge.application.service;
+import com.example.challenge.web.dto.ContactDTO;
 import com.example.challenge.application.exception.ContactExceptionHandling.ContactNotFoundException;
 import com.example.challenge.application.exception.ContactExceptionHandling.DuplicateContactException;
 import com.example.challenge.application.exception.ContactExceptionHandling.UserNotFoundException;

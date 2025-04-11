@@ -1,10 +1,8 @@
 package com.example.challenge.web.controller;
-
-
-import com.example.challenge.application.dto.UserDTO;
-import com.example.challenge.application.exception.ErrorResponse;
-import com.example.challenge.domain.service.AuthService;
-import org.springframework.http.HttpStatus;
+import com.example.challenge.web.dto.LoginDTO;
+import com.example.challenge.web.dto.RegisterDTO;
+import com.example.challenge.application.service.AuthService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,23 +19,19 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@RequestBody UserDTO userDto) {
-        String token = authService.authenticateUser(userDto.getUsername(), userDto.getPassword()).getBody().toString();
-
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDTO loginDTO) {
+        String token = authService.authenticateUser(loginDTO.getUsername(), loginDTO.getPassword()).getBody().toString();
+        // Return success response with token
         return ResponseEntity.ok(Collections.singletonMap("token", token));
     }
 
 
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody UserDTO userDto) {
-        if (!userDto.getPassword().equals(userDto.getConfirmPassword())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ErrorResponse("PASSWORD_MISMATCH", "Passwords do not match."));
-        }
-
-        String message = authService.registerUser(userDto.getUsername(), userDto.getPassword());
-
+    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDTO registerDto) {
+        // Call the service to register the user
+        String message = authService.registerUser(registerDto.getUsername(), registerDto.getPassword(), registerDto.getConfirmPassword());
+        // Return success response
         return ResponseEntity.ok(Collections.singletonMap("message", message));
     }
 

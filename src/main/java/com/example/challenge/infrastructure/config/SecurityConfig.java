@@ -1,6 +1,6 @@
 package com.example.challenge.infrastructure.config;
 
-import com.example.challenge.domain.service.CustomUserDetailsService;
+import com.example.challenge.application.service.CustomUserDetailsService;
 import com.example.challenge.infrastructure.security.AuthEntryPointJwt;
 import com.example.challenge.infrastructure.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;

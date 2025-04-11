@@ -1,16 +1,16 @@
-package com.example.challenge.application.dto;
-
+package com.example.challenge.web.dto;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 
-
+@Data
 public class ContactDTO {
     private String firstName;
     private String lastName;
     private String phoneNumber;
+    @NotNull(message = "Email cannot be null")
+    @Email(message = "Email should be valid")
     private String emailAddress;
     private LocalDate birthdate;
 

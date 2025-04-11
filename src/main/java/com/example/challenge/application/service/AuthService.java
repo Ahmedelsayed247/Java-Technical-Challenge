@@ -1,6 +1,6 @@
-package com.example.challenge.domain.service;
-
+package com.example.challenge.application.service;
 import com.example.challenge.application.exception.UserExceptionHandling.InvalidCredentialsException;
+import com.example.challenge.application.exception.UserExceptionHandling.PasswordMismatchException;
 import com.example.challenge.application.exception.UserExceptionHandling.UserAlreadyExistsException;
 import com.example.challenge.domain.model.User;
 import com.example.challenge.infrastructure.security.JwtTokenProvider;
@@ -36,12 +36,17 @@ public class AuthService {
             return ResponseEntity.ok(jwtTokenProvider.generateToken(userDetails.getUsername()));
 
         } catch (Exception e) {
-            // Thsrow an exception with a meaningful message when authentication fails
+            // Throw an exception with a meaningful message when authentication fails
             throw new InvalidCredentialsException("Invalid username or password.");
         }
     }
 
-    public String registerUser(String username, String password) {
+    public String registerUser(String username, String password, String confirmPassword) {
+        // Check if the passwords match
+        if (!password.equals(confirmPassword)) {
+            throw new PasswordMismatchException("Passwords do not match.");
+        }
+
         // Check if the user already exists and throw an exception if necessary
         if (userService.existsByUsername(username)) {
             throw new UserAlreadyExistsException("User with this username already exists.");

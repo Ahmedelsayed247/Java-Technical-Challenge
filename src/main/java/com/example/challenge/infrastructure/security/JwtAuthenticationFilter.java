@@ -1,6 +1,6 @@
 package com.example.challenge.infrastructure.security;
 
-import com.example.challenge.domain.service.CustomUserDetailsService;
+import com.example.challenge.application.service.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

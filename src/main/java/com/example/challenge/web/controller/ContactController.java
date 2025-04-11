@@ -1,15 +1,13 @@
 package com.example.challenge.web.controller;
-
-import com.example.challenge.application.dto.ContactDTO;
-import com.example.challenge.application.exception.ContactExceptionHandling.DuplicateContactException;
 import com.example.challenge.domain.model.Contact;
 import com.example.challenge.domain.model.User;
-import com.example.challenge.domain.service.ContactService;
-import com.example.challenge.domain.service.UserService;
+import com.example.challenge.application.service.ContactService;
+import com.example.challenge.application.service.UserService;
+import com.example.challenge.web.dto.ContactDTO;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -18,23 +16,19 @@ import java.util.List;
 public class ContactController {
 
     private final ContactService contactService;
-    private final UserService userService;
 
     public ContactController(ContactService contactService, UserService userService) {
         this.contactService = contactService;
-        this.userService = userService;
     }
 
     @PostMapping
-    public ResponseEntity<?> addContact(@RequestBody ContactDTO contactDTO, Authentication authentication) {
+    public ResponseEntity<?> addContact(@Valid @RequestBody ContactDTO contactDTO, Authentication authentication) {
         // Delegate to the service layer to add the contact
         contactService.save(contactDTO, authentication.getName());
 
         // Return success response
         return ResponseEntity.ok(Collections.singleton("Contact added successfully!"));
     }
-
-
     @GetMapping
     public ResponseEntity<List<Contact>> listContacts(Authentication authentication) {
         User user = contactService.getUserByUsername(authentication.getName());

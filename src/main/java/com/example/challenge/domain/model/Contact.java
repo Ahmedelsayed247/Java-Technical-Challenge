@@ -1,5 +1,4 @@
 package com.example.challenge.domain.model;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
