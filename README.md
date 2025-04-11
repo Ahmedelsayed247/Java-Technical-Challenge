@@ -34,7 +34,7 @@ com.example.challenge/
 - Maven: A build tool to handle dependencies and run the application.
 - IDE (optional): IntelliJ IDEA, Eclipse, or any Java-compatible IDE.
 
-# # 📦 Installation
+## 📦 Installation
 ## 1- Clone the Repository
 ```bash
 git clone https://github.com/Ahmedelsayed247/Java-Technical-Challenge.git
