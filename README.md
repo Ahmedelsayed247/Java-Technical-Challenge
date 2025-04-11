@@ -77,26 +77,26 @@ The application will start on http://localhost:8080.
 
 ## Accessing the API
 The following endpoints are available for interacting with the application:
-- POST /api/auth/register: Register a new user.
+- POST /auth/register: Register a new user.
 
-- POST /api/auth/login: Login and obtain a JWT token.
+- POST /auth/login: Login and obtain a JWT token.
 
-- GET /api/contacts: Get a list of contacts for the authenticated user (with pagination support).
+- GET /contacts: Get a list of contacts for the authenticated user (with pagination support).
 
-- POST /api/contacts: Create a new contact.
+- POST /contacts: Create a new contact.
 
-- PUT /api/contacts/{id}: Update a contact.
+- PUT /contacts/{id}: Update a contact.
 
-- DELETE /api/contacts/{id}: Delete a contact.
+- DELETE /contacts/{id}: Delete a contact.
 
 
 ## 🧑‍💻 Usage Usage
-- User Registration: Use the /api/auth/register endpoint to create a new user by providing a username, password, and email.
+- User Registration: Use the /auth/register endpoint to create a new user by providing a username, password, and email.
 - User Login: Once registered, login through the /api/auth/login endpoint to get a JWT token.
 - Managing Contacts: After login, use the /api/contacts endpoints to manage your contacts (CRUD operations).
 
 ## ⚙️ Pagination Support
-The /api/contacts GET endpoint supports pagination and sorting using a structured request body via the ContactListRequest DTO. This allows clients to define the page number, size, sorting fields, and direction.
+- The /contacts GET endpoint supports pagination and sorting using a structured request body via the ContactListRequest DTO. This allows clients to define the page number, size, sorting fields, and direction.
 ## ContactListRequest Structure:
 ```json
 {
@@ -117,7 +117,7 @@ The /api/contacts GET endpoint supports pagination and sorting using a structure
 ## Example Requests
 ## Register User:
 ``` bash 
-POST /api/auth/register
+POST /auth/register
 {
   "username": "ahmedelsayed",
   "password": "ahmed123456",
@@ -126,7 +126,7 @@ POST /api/auth/register
 ```
 ## Login User:
 ``` bash 
-POST /api/auth/login
+POST /auth/login
 {
   "username": "ahmedelsayed",
   "password": "ahmed123456"
@@ -135,7 +135,7 @@ POST /api/auth/login
 
 ## Create Contact (requires JWT token in the Authorization header):
 ``` bash 
-POST /api/contacts
+POST /contacts
 Authorization: Bearer <JWT_TOKEN>
    {
         "firstName": "ahmed",
@@ -147,7 +147,7 @@ Authorization: Bearer <JWT_TOKEN>
 ```
 ## list of contacts for the authenticated user with pagination. 
 ``` bash 
-GEt /api/contacts
+GEt /contacts
 Authorization: Bearer <JWT_TOKEN>
 {
   "page": 1,
