@@ -95,7 +95,7 @@ The following endpoints are available for interacting with the application:
 - User Login: Once registered, login through the /api/auth/login endpoint to get a JWT token.
 - Managing Contacts: After login, use the /api/contacts endpoints to manage your contacts (CRUD operations).
 
-⚙️ Pagination Support
+## ⚙️ Pagination Support
 The /api/contacts GET endpoint supports pagination and sorting using a structured request body via the ContactListRequest DTO. This allows clients to define the page number, size, sorting fields, and direction.
 ## ContactListRequest Structure:
 ```json
@@ -105,7 +105,7 @@ The /api/contacts GET endpoint supports pagination and sorting using a structure
   "sortBy": ["firstName"],
   "sortDir": "asc"
 }
-
+```
 - page: (integer) Page number (starting from 0).
 
 - size: (integer) Number of items per page.
