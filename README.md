@@ -35,11 +35,11 @@ com.example.challenge/
 - IDE (optional): IntelliJ IDEA, Eclipse, or any Java-compatible IDE.
 
 # # 📦 Installation
-1- Clone the Repository
+## 1- Clone the Repository
 ```bash
 git clone https://github.com/Ahmedelsayed247/Java-Technical-Challenge.git
 ```
-2- Set Up MySQL Database
+## 2- Set Up MySQL Database
 Ensure that MySQL is installed and running on your local machine. Create a new database for the application, 
 ```sql
 CREATE DATABASE addressbook_db;
@@ -58,7 +58,7 @@ spring.jpa.properties.hibernate.format_sql=true
 ```
 ## Build the Project
 ```bash
- cd Java-Technical-Challenge
+cd Java-Technical-Challenge
 mvn clean install
 ```
 ## 🚀 Running the Application
@@ -83,9 +83,10 @@ The following endpoints are available for interacting with the application:
 
 
 ## 🧑‍💻 Usage Usage
-1- User Registration: Use the /api/auth/register endpoint to create a new user by providing a username, password, and email.
-2- User Login: Once registered, login through the /api/auth/login endpoint to get a JWT token.
-3- Managing Contacts: After login, use the /api/contacts endpoints to manage your contacts (CRUD operations).
+- User Registration: Use the /api/auth/register endpoint to create a new user by providing a username, password, and email.
+- User Login: Once registered, login through the /api/auth/login endpoint to get a JWT token.
+- Managing Contacts: After login, use the /api/contacts endpoints to manage your contacts (CRUD operations).
+
 ## Example Requests
 ## Register User:
 ``` bash 
