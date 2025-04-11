@@ -4,7 +4,9 @@ import com.example.challenge.domain.model.User;
 import com.example.challenge.application.service.ContactService;
 import com.example.challenge.application.service.UserService;
 import com.example.challenge.web.dto.ContactDTO;
+import com.example.challenge.web.dto.ContactListRequest;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -29,10 +31,16 @@ public class ContactController {
         // Return success response
         return ResponseEntity.ok(Collections.singleton("Contact added successfully!"));
     }
-    @GetMapping
-    public ResponseEntity<List<Contact>> listContacts(Authentication authentication) {
+    @PostMapping("/list")
+    public ResponseEntity<List<Contact>> listContacts(
+            Authentication authentication,
+            @RequestBody ContactListRequest request) {
+
         User user = contactService.getUserByUsername(authentication.getName());
-        return ResponseEntity.ok(contactService.findByUser(user));
+        Page<Contact> contacts = contactService.findByUser(user, request);
+
+        // Returning only the content (list of contacts) without metadata
+        return ResponseEntity.ok(contacts.getContent());
     }
 
     @GetMapping("/{id}")

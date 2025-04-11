@@ -7,6 +7,12 @@ import com.example.challenge.domain.model.Contact;
 import com.example.challenge.domain.model.User;
 import com.example.challenge.domain.repository.ContactRepository;
 import com.example.challenge.domain.repository.UserRepository;
+import com.example.challenge.web.dto.ContactListRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,6 +50,16 @@ public class ContactService {
 
     public List<Contact> findByUser(User user) {
         return contactRepository.findByUser(user);
+    }
+    public Page<Contact> findByUser(User user, ContactListRequest request) {
+        List<Sort.Order> orders = request.getSortBy().stream()
+                .map(field -> new Sort.Order(
+                        "desc".equalsIgnoreCase(request.getSortDir()) ? Sort.Direction.DESC : Sort.Direction.ASC,
+                        field))
+                .toList();
+
+        Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), Sort.by(orders));
+        return contactRepository.findByUser(user, pageable);
     }
 
     public Contact findByContactIdAndUser(Long contactId, User user) {
