@@ -81,19 +81,19 @@ The following endpoints are available for interacting with the application:
 
 - POST /auth/login: Login and obtain a JWT token.
 
-- GET /contacts: Get a list of contacts for the authenticated user (with pagination support).
-
 - POST /contacts: Create a new contact.
 
-- PUT /contacts/{id}: Update a contact.
+- GET /contacts: Get a list of contacts for the authenticated user (with pagination support).
+
+- GET /contacts/{id}: Get a contact by id.
 
 - DELETE /contacts/{id}: Delete a contact.
 
 
 ## 🧑‍💻 Usage Usage
 - User Registration: Use the /auth/register endpoint to create a new user by providing a username, password, and email.
-- User Login: Once registered, login through the /api/auth/login endpoint to get a JWT token.
-- Managing Contacts: After login, use the /api/contacts endpoints to manage your contacts (CRUD operations).
+- User Login: Once registered, login through the /auth/login endpoint to get a JWT token.
+- Managing Contacts: After login, use the /contacts endpoints to manage your contacts (CRUD operations).
 
 ## ⚙️ Pagination Support
 - The /contacts GET endpoint supports pagination and sorting using a structured request body via the ContactListRequest DTO. This allows clients to define the page number, size, sorting fields, and direction.
