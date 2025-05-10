@@ -29,6 +29,7 @@ public class ContactDTO {
     public String getEmailAddress() {
         return emailAddress;
     }
+    
 
     public LocalDate getBirthdate() {
         return birthdate;
