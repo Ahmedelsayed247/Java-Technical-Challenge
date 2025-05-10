@@ -37,6 +37,7 @@ Watch a short demo of the project here:
 - Java 11 or higher: Required to run the Spring Boot application.
 - MySQL: The database used for storing user and contact data.
 - Maven: A build tool to handle dependencies and run the application.
+- Docker (optional, for containerized setup)
 - IDE (optional): IntelliJ IDEA, Eclipse, or any Java-compatible IDE.
 
 ## 📦 Installation
@@ -49,22 +50,27 @@ Ensure that MySQL is installed and running on your local machine. Create a new d
 ```sql
 CREATE DATABASE addressbook_db;
 ```
-
-## Configure Application Properties
-```propeties
-spring.datasource.url=jdbc:mysql://localhost:3306/addressbook_db?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
-spring.datasource.username=your_mysql_username
-spring.datasource.password=your_mysql_password
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-# Hibernate Configuration
-spring.jpa.show-sql=true
-spring.jpa.hibernate.ddl-auto=update
-# JWT Configuration
-jwt.secret=thisIsMysecregtfrdesww233eggtffeeddgkjjhhtdhttebd54ndhdhfhhhshs8877465sbbdd
-jwt.expiration=3600000 
-
+## 🐳 Docker Setup (Optional)
+This project supports Docker to simplify setup and deployment.
+1. Build and Run with Docker Compose
+```bash
+docker-compose up --build
 ```
-## Build the Project
+This command will:
+- Build the Spring Boot application image.
+- Set up a MySQL container.
+- Start everything in a connected environment.
+  
+2. Access the Application 
+- API Base URL: http://localhost:8080
+- MySQL: localhost:3306, user: test, password: 123456
+
+3. Docker Files Overview
+- Dockerfile: Defines the Spring Boot application image.
+- docker-compose.yml: Sets up the app with a MySQL container.
+
+
+## Build the Project(without docker)
 ```bash
 cd Java-Technical-Challenge
 mvn clean install
