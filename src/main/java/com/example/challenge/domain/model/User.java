@@ -41,19 +41,19 @@ public class User {
         this.password = password;
     }
 
-    public @NotNull(message = "Username cannot be null") @Size(min = 3, max = 50, message = "Username must be between 3 and 50 characters") String getUsername() {
+    public @NotNull(message = "Username cannot be null") String getUsername() {
         return username;
     }
 
-    public void setUsername(@NotNull(message = "Username cannot be null") @Size(min = 3, max = 50, message = "Username must be between 3 and 50 characters") String username) {
+    public void setUsername(@NotNull(message = "Username cannot be null") String username) {
         this.username = username;
     }
 
-    public @NotNull(message = "Password cannot be null") @Size(min = 8, message = "Password must be at least 8 characters long") String getPassword() {
+    public @NotNull(message = "Password cannot be null") String getPassword() {
         return password;
     }
 
-    public void setPassword(@NotNull(message = "Password cannot be null") @Size(min = 8, message = "Password must be at least 8 characters long") String password) {
+    public void setPassword(@NotNull(message = "Password cannot be null") String password) {
         this.password = password;
     }
 

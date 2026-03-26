@@ -4,6 +4,7 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -13,12 +14,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
+    private static ValidatorFactory validatorFactory;
     private static Validator validator;
 
     @BeforeAll
     static void setUpValidator() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
+        validatorFactory = Validation.buildDefaultValidatorFactory();
+        validator = validatorFactory.getValidator();
+    }
+
+    @AfterAll
+    static void tearDownValidator() {
+        if (validatorFactory != null) {
+            validatorFactory.close();
+        }
     }
 
     // --- Tests verifying @Size is NO LONGER enforced on username field ---
